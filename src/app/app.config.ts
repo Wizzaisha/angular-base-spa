@@ -23,12 +23,18 @@ import {
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { reducers } from './shared/store/app.reducer';
+import { metaReducers, rehydrateState } from './shared/store/metaReducers';
+import { Module1Effects } from './pages/module1/store/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore(),
+    provideStore(reducers, {
+      metaReducers: metaReducers,
+      initialState: rehydrateState(),
+    }),
     provideAnimations(),
     provideAnimationsAsync(),
     providePrimeNG({
@@ -39,7 +45,7 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
-    provideEffects(),
+    provideEffects([Module1Effects]),
     provideHttpClient(withFetch(), withInterceptors([apiUrlInterceptor])),
     provideStoreDevtools({
       maxAge: 25,

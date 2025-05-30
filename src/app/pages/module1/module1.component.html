@@ -1,1 +1,48 @@
-<p class="text-primary">module1 works!</p>
+<div class="flex flex-col justify-center items-center gap-5">
+  <div class="w-full flex flex-col justify-center items-center gap-10">
+    <h2>Current number state: {{ numberState$ | async }}</h2>
+
+    <div class="flex justify-center items-center gap-10">
+      <app-primary-button
+        text="Increment"
+        (handleClick)="handleNumberChange(0)"
+      >
+      </app-primary-button>
+      <app-primary-button
+        text="Decrement"
+        (handleClick)="handleNumberChange(1)"
+      >
+      </app-primary-button>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="form"
+    class="w-full flex flex-col gap-5 justify-center items-center"
+  >
+    <h2>Input example</h2>
+
+    <app-text-input
+      [control]="nameField"
+      placeholder="First name"
+      id="nameField"
+      labelText="First name"
+      [showLabel]="true"
+      class="w-full max-w-[25rem]"
+    ></app-text-input>
+
+    <app-primary-button
+      type="submit"
+      text="Submit"
+      class="w-full max-w-[10rem]"
+      (handleClick)="handleSubmit()"
+    >
+    </app-primary-button>
+  </form>
+
+  <p-button
+    label="Toggle Dark Mode"
+    styleClass="mt-10"
+    (onClick)="handleToggleTheme()"
+  />
+</div>

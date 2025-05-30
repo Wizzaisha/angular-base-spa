@@ -1,0 +1,14 @@
+<button
+  class="btn btn-primary w-full btn-sm relative min-w-[7rem]"
+  (click)="clickAction($event)"
+  [type]="type"
+  [disabled]="disabled"
+  [pTooltip]="title"
+  tooltipPosition="top"
+>
+  <span
+    *ngIf="showHighlight"
+    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+  ></span>
+  {{ text }}
+</button>
